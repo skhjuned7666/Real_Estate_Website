@@ -21,17 +21,62 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Search button functionality (simple log)
+  // --- HERO SEARCH BAR INTERACTIONS ---
+  const searchTabs = document.querySelectorAll(".search-tab");
+  const searchInput = document.querySelector(".search-input");
   const searchButton = document.querySelector(".btn-search");
+
+  // Tab wise placeholder text (you can tweak copy here)
+  const searchPlaceholders = {
+    Buy: 'Search "2 BHK in Hinjewadi Pune"',
+    "New Launch": 'Search "New projects in Wakad"',
+    Commercial: 'Search "Office space in Baner"',
+    "Plots/Land": 'Search "NA plots near Nashik"',
+    Projects: 'Search "Township in West Pune"',
+  };
+
+  // Handle tab change
+  if (searchTabs.length && searchInput) {
+    searchTabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        // Active state
+        searchTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+
+        const label = this.textContent.trim();
+        if (searchPlaceholders[label]) {
+          searchInput.placeholder = searchPlaceholders[label];
+        }
+      });
+    });
+  }
+
+  // Search button functionality
   if (searchButton) {
     searchButton.addEventListener("click", function () {
-      const locationInput = document.querySelector(".search-input");
-      const location = locationInput ? locationInput.value : "";
-      
+      const activeTab = document.querySelector(".search-tab.active");
+      const categoryButton = document.querySelector(".search-category");
+      const location = searchInput ? searchInput.value.trim() : "";
+      const mode = activeTab ? activeTab.textContent.trim() : "Buy";
+      const category = categoryButton
+        ? categoryButton.textContent.trim()
+        : "All Residential";
+
+      // For now simply log; this is where API / navigation can hook in
       console.log("Search:", {
+        mode,
+        category,
         location,
       });
-      // Add your search logic here
+
+      // Temporary UX feedback
+      if (!location) {
+        alert(`Searching in "${mode}" for ${category}. Enter a location or project name to refine.`);
+      } else {
+        alert(
+          `Searching "${location}" in ${mode} · ${category}. (Hook this into your backend / results page.)`
+        );
+      }
     });
   }
 
