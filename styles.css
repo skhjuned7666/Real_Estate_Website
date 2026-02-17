@@ -640,8 +640,7 @@ ul {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(135deg, rgba(248, 249, 250, 0.271) 0%, rgba(0, 0, 0, 0.271) 50%, rgba(161, 176, 204, 0.271) 100%),
-    url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop");
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.956) 0%, rgb(0, 0, 0) 50%, rgba(5, 29, 52, 0.271) 100%);
   background-size: cover;
   background-position: center;
   padding: 80px 5% 60px;
@@ -650,20 +649,29 @@ ul {
   overflow: hidden;
 }
 
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 194, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 194, 255, 0.04) 1px, transparent 1px);
-  background-size: 36px 36px;
+  /* background-image: linear-gradient(180deg, rgba(106, 106, 106, 0.066) 0%, rgba(0, 0, 0, 0.104) 40%, rgba(64, 63, 63, 0.049) 100%); */
+  /* background-size: auto; */
   pointer-events: none;
+  z-index: 1;
 }
 
 .hero h1 {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-size: clamp(2rem, 4.5vw, 3rem);
   margin-bottom: 28px;
   color: #f8fafc;
@@ -1252,10 +1260,7 @@ ul {
     padding: 90px 5% 60px;
     height: 100vh;
     min-height: 100vh;
-    background: linear-gradient(160deg, var(--dark-bg) 0%, #1e293b 50%, var(--dark-bg) 100%),
-      url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop");
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(160deg, var(--dark-bg) 0%, #1e293b 50%, var(--dark-bg) 100%);
   }
 
   .hero h1 {
